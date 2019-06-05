@@ -1,17 +1,49 @@
 #include "arvoreb.h"
 
-/*Descrição: ????*/
+/*Dividir o no em dois*/
 Arvore* dividir_no (Arvore *x, int i, Arvore *y) {
    /*Completar!!!!!!!!!!!!!!*/
-   
+  // x = inserir(x, y.chaves[T]);
+  // Arvore *k = criar();
+
    printf("Completar\n");
    return x;
 }
 
-/*Descrição: ????*/
-Arvore* inserir_arvore_nao_cheia (Arvore *x, TIPO k) {
-   /*Completar!!!!!!!!!!!!!!*/
-   printf("Completar\n");
+/*Descrição: inserir e organizar o vetor*/
+Arvore* inserir_arvore_nao_cheia (Arvore *x, TIPO k)
+{
+    int i = 0;
+    while((i<x->n)&&(k > x->chaves[i]))
+      i ++;
+    if(x->folha)
+    {
+      if(k<x->chaves[i])
+      {
+        TIPO aux = 0;
+        aux = x->chaves[i];
+        x->chaves[i] = k;
+        i++;
+        while(i<=x->n)
+        {
+          k = x->chaves[i];
+          x->chaves[i] = aux;
+          aux = k;
+          i++;
+        }
+        (x->n)++;
+      }
+      else if(i == x->n)
+      {
+        x->chaves[i] = k;
+        (x->n) ++;
+      }
+    }
+    else
+    {
+      return inserir_arvore_nao_cheia(x->filhos[i],k);
+    }
+   //printf("Completar\n");
    return x;
 }
 
