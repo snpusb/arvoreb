@@ -84,24 +84,40 @@ Arvore* dividir_no(Arvore *x, int i, Arvore *y) {
 	aux2 = criar();
 	x->chaves[0] = y->chaves[T - 1];
 	x->n++;
-	while (i < T-1)
-	{
-		inserir_arvore_nao_cheia(aux1, y->chaves[i]);
-		i++;
-	}
-	i ++;
-	while (i >= T&&i < (2 * T - 1))
-	{
-		inserir_arvore_nao_cheia(aux2, y->chaves[i]);
-		i++;
-	}
 	x->filhos[0] = aux1;
 	x->filhos[1] = aux2;
+	if (y->folha == FALSE)
+	{
+		aux1->folha = FALSE;
+		aux2->folha = FALSE;
+	}
+	int j = 0;
+	while (j<T)
+	{
+		aux1->filhos[j] = y->filhos[j];
+		j++;
+	}
+	while (j >= T&&j < (2 * T ))
+	{
+		aux2->filhos[j-T] = y->filhos[j];
+		j++;
+	}
+	while (i < T-1)
+	{
+		aux1 = inserir(aux1, y->chaves[i]);
+		i++;
+	}
+	i++;
+	while (i >= T&&i < (2 * T) - 1)
+	{
+		aux2 = inserir(aux2, y->chaves[i]);
+		i++;
+	}
+
 	//implementaçao da divisao para nó nao folha
 
 	return x;
 }
-
 
 /*Função para inserir uma chave em uma árvore B:*/
 Arvore *inserir (Arvore *raiz, TIPO chave) {
