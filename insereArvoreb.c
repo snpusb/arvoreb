@@ -1,6 +1,7 @@
 #include "arvoreb.h"
 
 /*Dividir o no em dois*/
+
 Arvore* inserir_arvore_nao_cheia(Arvore *x, TIPO k)
 {
 	int i = 0;
@@ -104,21 +105,19 @@ Arvore* dividir_no(Arvore *x, int i, Arvore *y) {
 	}
 	while (i < T-1)
 	{
-		aux1 = inserir(aux1, y->chaves[i]);
+		aux1->chaves[i] = y->chaves[i];
 		i++;
+		aux1->n++;
 	}
 	i++;
 	while (i >= T&&i < (2 * T) - 1)
 	{
-		aux2 = inserir(aux2, y->chaves[i]);
+		aux2->chaves[i-T] = y->chaves[i];
 		i++;
+		aux2->n++;
 	}
-
-	//implementaçao da divisao para nó nao folha
-
 	return x;
 }
-
 /*Função para inserir uma chave em uma árvore B:*/
 Arvore *inserir (Arvore *raiz, TIPO chave) {
    Arvore *r = raiz;
